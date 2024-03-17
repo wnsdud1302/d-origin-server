@@ -48,7 +48,7 @@ public class NewsService {
         }
     }
 
-    public List<News> getNews(){
+    public List<News> getAllNews(){
         return newsRepository.findAll();
     }
 
@@ -58,12 +58,23 @@ public class NewsService {
     }
     
     @SuppressWarnings("null")
-    public void deleteNews(Long id){
+    public String delete(Long id){
+        String temp = newsRepository.findById(id).get().getTitle();
         newsRepository.deleteById(id);
+        return temp;
     }
 
     public void deleteAllNews(){
         newsRepository.deleteAll();
+    }
+
+    @SuppressWarnings("null")
+    public News modify(Long id, News entity){
+        News temp = newsRepository.findById(id).get();
+        temp.setTitle(entity.getTitle());
+        temp.setContent(entity.getContent());
+        newsRepository.save(temp);
+        return temp;
     }
 
 }

@@ -78,11 +78,25 @@ public class ProjectService {
     }
 
     @SuppressWarnings("null")
-    public void deleteProject(String name){
+    public void delete(String name){
         Optional<Project> prj = projectRepository.findByName(name);
         if(prj.isPresent()){
             projectRepository.delete(prj.get());
         }
+    }
+
+    public ProjectDTO modify(ProjectDTO entity, String name){
+        Optional<Project> prj = projectRepository.findByName(name);
+        if(prj.isPresent()){
+            Project temp = prj.get();
+            temp.setArea(entity.getArea());
+            temp.setScale(entity.getScale());
+            temp.setDescription(entity.getDescription());
+            projectRepository.save(temp);
+            return new ProjectDTO(temp.getName(), temp.getArea(), temp.getScale(), temp.getDescription());
+        }
+        return null;
+
     }
 
     public void deleteAllProjects(){
