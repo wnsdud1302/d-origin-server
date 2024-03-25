@@ -19,7 +19,6 @@ public class Recruit {
     String title;
 
     @Column
-    String recruitType;
-
+    String content;
     
 }

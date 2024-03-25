@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.junyeong.dorigin.Model.Entity.News;
 import com.junyeong.dorigin.Model.Repository.NewsRepository;
 
-import java.util.List;
+import java.util.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,13 +39,8 @@ public class NewsService {
         }
     }
 
-    @SuppressWarnings("null")
-    public News getNewsById(Long id){
-        if (newsRepository.findById(id).isPresent()){
-            return newsRepository.findById(id).get();
-        } else {
-            return null;
-        }
+    public News getNewsByTitle(String title){
+        return newsRepository.findBytitle(title).get();
     }
 
     public List<News> getAllNews(){
@@ -56,21 +51,21 @@ public class NewsService {
         Pageable pageable = PageRequest.of(page, size);
         return newsRepository.findAll(pageable);
     }
-    
+
     @SuppressWarnings("null")
-    public String delete(Long id){
-        String temp = newsRepository.findById(id).get().getTitle();
-        newsRepository.deleteById(id);
-        return temp;
+    public void delete(String title){
+        Optional<News> temp = newsRepository.findBytitle(title);
+        if(temp.isPresent()){
+            newsRepository.delete(temp.get());
+        }
     }
 
     public void deleteAllNews(){
         newsRepository.deleteAll();
     }
 
-    @SuppressWarnings("null")
-    public News modify(Long id, News entity){
-        News temp = newsRepository.findById(id).get();
+    public News modify(String title, News entity){
+        News temp = newsRepository.findBytitle(title).get();
         temp.setTitle(entity.getTitle());
         temp.setContent(entity.getContent());
         newsRepository.save(temp);

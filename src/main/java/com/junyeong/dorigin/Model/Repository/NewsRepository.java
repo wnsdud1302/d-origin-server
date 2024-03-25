@@ -8,4 +8,5 @@ import com.junyeong.dorigin.Model.Entity.News;
 
 public interface NewsRepository extends JpaRepository<News, Long>{
     Optional<News> findBytitle(String title);
+    void deleteBytitle(String title);
 }

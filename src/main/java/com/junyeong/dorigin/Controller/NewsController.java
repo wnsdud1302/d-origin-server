@@ -32,15 +32,10 @@ public class NewsController {
     
     @GetMapping("/news/{title}")
     public News getNewsByTitle(@PathVariable("title") String title) {
-        String temp = title.replace("-", " ");
-        System.out.println(temp);
-        return newsService.getNew(temp);
+        // String temp = title.replace("-", " ");
+        return newsService.getNew(title);
     }
 
-    @GetMapping("/news/{id}")
-    public News getNewsById(@PathVariable("id") Long id) {
-        return newsService.getNewsById(id);
-    }
 
     @GetMapping("/news")
     public Page<News> getNewsPage(@RequestParam(required = false, defaultValue = "0", value = "page") int page,
@@ -55,15 +50,14 @@ public class NewsController {
     }
 
     @PutMapping("/news/modify")
-    public News modifyNews(@RequestBody News entity, @RequestParam("id") long id) {
-        News temp = newsService.modify(id, entity);
+    public News modifyNews(@RequestBody News entity, @RequestParam("title") String title) {
+        News temp = newsService.modify(title, entity);
         return temp;
     }
 
     @DeleteMapping("/news/delete")
-    public String deleteNews(@RequestParam("id") long id) {
-        String temp = newsService.delete(id);
-        return temp;
+    public void deleteNews(@RequestParam("title") String title) {
+        newsService.delete(title);
     }
     
     

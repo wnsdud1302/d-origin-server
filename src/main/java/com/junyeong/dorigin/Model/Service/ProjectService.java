@@ -89,6 +89,7 @@ public class ProjectService {
         Optional<Project> prj = projectRepository.findByName(name);
         if(prj.isPresent()){
             Project temp = prj.get();
+            temp.setName(entity.getName());
             temp.setArea(entity.getArea());
             temp.setScale(entity.getScale());
             temp.setDescription(entity.getDescription());
