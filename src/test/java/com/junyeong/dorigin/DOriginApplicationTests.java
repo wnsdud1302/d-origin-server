@@ -1,18 +1,12 @@
 package com.junyeong.dorigin;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.junyeong.dorigin.Model.Entity.Category;
-import com.junyeong.dorigin.Model.Entity.News;
-import com.junyeong.dorigin.Model.Repository.NewsRepository;
 import com.junyeong.dorigin.Model.Service.CategoryService;
-import com.junyeong.dorigin.Model.Service.NewsService;
 import com.junyeong.dorigin.Model.Service.ProjectService;
 
 @SpringBootTest
@@ -24,11 +18,6 @@ class DOriginApplicationTests {
 	@Autowired
 	private ProjectService projectService;
 
-	@Autowired
-	private NewsService newsService;
-
-	@Autowired
-	private NewsRepository newsRepository;
 
 	@Test
 	void contextLoads() {
