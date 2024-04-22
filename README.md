@@ -12,10 +12,6 @@ d-origin 건축사무소 홈페이지 제작 의뢰를 받아 제작한 홈페�
 
 ### News
 
-## 프로젝트 개발 기간
-
-#### 2024.2.14 ~ 2024.3.22
-
 ## 개발환경
 
 ![java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
